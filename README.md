@@ -1,4 +1,4 @@
-# pytorch_layers_implementation
+# Pytorch layers implementation
 Implemented some pytorch layers. Compared speed and mean squared error.
 
 Layers are implemented in both vector and scalar form.

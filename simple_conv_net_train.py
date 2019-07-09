@@ -64,7 +64,7 @@ def train(args, model, device, train_loader, optimizer, epoch):
     for batch_idx, (data, target) in enumerate(train_loader):
         data, target = data.to(device), target.to(device)
         optimizer.zero_grad()
-        output = model.forward(data)
+        output = model.forward_vector(data)
 
         loss = F.nll_loss(torch.log(output), target)
         loss.backward()

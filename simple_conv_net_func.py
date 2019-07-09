@@ -16,8 +16,8 @@ def conv2d_scalar(x_in, conv_weight, conv_bias, device):
 
     # Check convolutional kernel is square
     assert conv_weight.shape[2] == conv_weight.shape[3]
-
     result = torch.empty(N, C_out, image_out_height, image_out_width).to(device)
+
     for n in range(N):
         for c_out in range(C_out):
             for m in range(image_out_height):
@@ -113,10 +113,6 @@ def relu_vector(a, device):
     return result
 
 
-def reshape_vector(a, device):
-    return a.clone().view((a.shape[0], -1))
-
-
 def reshape_scalar(a, device):
     N, C_in, M, L = a.shape
     result = torch.empty((N, C_in * M * L)).to(device)
@@ -128,6 +124,10 @@ def reshape_scalar(a, device):
                     j_index = c * M * M + m * M + l
                     result[n, j_index] = a[n, c, m, l]
     return result
+
+
+def reshape_vector(a, device):
+    return a.clone().view((a.shape[0], -1))
 
 
 def fc_layer_scalar(a, weight, bias, device):
